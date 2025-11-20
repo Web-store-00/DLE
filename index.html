@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- 
+        Landing Page estilo Linktree para atacado de moda fitness
+        Pensada mobile-first, fácil de adaptar em WordPress/Elementor.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DLE Moda Fitness Atacado | Link de Contatos</title>
+    <meta name="description" content="Atacado de moda fitness de fabricação própria. Peças com alta qualidade para lojistas. Fale com nossos atendentes e receba o catálogo.">
+
+    <!-- Paleta baseada na logo DLE Moda Fitness -->
+    <style>
+        :root {
+            --color-bg: #f2f2f2;          /* Cinza claro de fundo */
+            --color-primary: #9b1556;    /* Magenta/vinho inspirado na logo */
+            --color-primary-soft: #c74382;
+            --color-text-main: #222222;
+            --color-text-muted: #666666;
+            --color-card-bg: #ffffff;
+            --color-border-soft: #e0e0e0;
+            --color-success: #1fbf61;
+
+            --radius-card: 18px;
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* RESET BÁSICO E MOBILE-FIRST */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text-main);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* LAYOUT GERAL - MOBILE FIRST */
+        .page-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .card-main {
+            width: 100%;
+            max-width: 480px;
+            background-color: var(--color-card-bg);
+            border-radius: 24px;
+            padding: 20px 18px 24px;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Fundo com "carrossel" vertical simples via CSS (sugerimos animar no Elementor depois) */
+        .card-main::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background-image: linear-gradient(
+                160deg,
+                rgba(155, 21, 86, 0.16),
+                rgba(199, 67, 130, 0.06),
+                rgba(255, 255, 255, 0)
+            );
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        .card-content {
+            position: relative; /* para ficar acima do pseudo-elemento ::before */
+            z-index: 1;
+        }
+
+        /* HEADER / HERO */
+        header.header-main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .logo-wrapper {
+            width: 110px;
+            height: 110px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 0 2px rgba(155, 21, 86, 0.12);
+            overflow: hidden;
+        }
+
+        .logo-wrapper img {
+            width: 90%;
+            height: auto;
+        }
+
+        .brand-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--color-primary);
+        }
+
+        .brand-subtitle {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: var(--color-text-main);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(155, 21, 86, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tag-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background-color: var(--color-success);
+        }
+
+        /* SEÇÃO BENEFÍCIOS RESUMIDOS */
+        .benefits-inline {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+
+        .benefit-chip {
+            font-size: 0.75rem;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background-color: rgba(0, 0, 0, 0.04);
+            color: var(--color-text-muted);
+        }
+
+        /* LINKS PRINCIPAIS - ESTILO LINKTREE */
+        .section-links {
+            margin-bottom: 18px;
+        }
+
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 16px;
+            background-color: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+        }
+
+        .link-item-primary {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-soft));
+            color: #ffffff;
+            border: none;
+        }
+
+        .link-left {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .link-label {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .link-sublabel {
+            font-size: 0.75rem;
+            opacity: 0.85;
+        }
+
+        .link-badge {
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+        }
+
+        .link-icon {
+            font-size: 1.3rem;
+        }
+
+        .link-item:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+            background-color: rgba(255, 255, 255, 0.96);
+        }
+
+        .link-item-primary:hover {
+            background: linear-gradient(135deg, var(--color-primary-soft), var(--color-primary));
+        }
+
+        /* PROVA SOCIAL SIMPLES */
+        .section-proof {
+            margin-bottom: 18px;
+        }
+
+        .proof-card {
+            border-radius: 14px;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid var(--color-border-soft);
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        .proof-highlight {
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        /* FAQ SIMPLES (ACORDEÃO PODE SER IMPLEMENTADO NO ELEMENTOR) */
+        .section-faq {
+            margin-bottom: 18px;
+        }
+
+        .faq-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .faq-item {
+            border-radius: 8px;
+            padding: 8px 10px;
+            background-color: rgba(0, 0, 0, 0.03);
+            font-size: 0.8rem;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            color: var(--color-text-main);
+        }
+
+        .faq-a {
+            margin-top: 3px;
+            color: var(--color-text-muted);
+        }
+
+        /* CTA FINAL */
+        .section-final-cta {
+            border-top: 1px dashed rgba(0, 0, 0, 0.08);
+            padding-top: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .final-text {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+
+        .btn-final-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            background-color: var(--color-success);
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: none;
+            box-shadow: 0 4px 14px rgba(31, 191, 97, 0.35);
+        }
+
+        .btn-final-whatsapp span.icon {
+            font-size: 1.1rem;
+        }
+
+        /* FOOTER SIMPLES */
+        footer.footer-main {
+            margin-top: 12px;
+            text-align: center;
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+        }
+
+        /* RESPONSIVIDADE PARA TELAS MAIORES (DESKTOP/TABLET) */
+        @media (min-width: 768px) {
+            body {
+                padding: 24px 0;
+            }
+
+            .page-wrapper {
+                padding: 24px;
+            }
+
+            .card-main {
+                max-width: 520px;
+                padding: 26px 24px 28px;
+            }
+
+            header.header-main {
+                margin-bottom: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        NAV PRINCIPAL (ESTILO LINKTREE): poderia ser um nav fixo no topo em versões futuras.
+        Aqui, como é uma landing única, o foco são os botões principais.
+    -->
+    <div class="page-wrapper">
+        <main class="card-main" aria-label="Links principais DLE Moda Fitness">
+            <div class="card-content">
+                <!-- HEADER / HERO -->
+                <header class="header-main">
+                    <!-- Logo da DLE - substitua o src pelo caminho da sua imagem no GitHub -->
+                    <div class="logo-wrapper">
+                        <img src="imagens/logo-dle.png" alt="DLE Moda Fitness - Atacado de fabricação própria">
+                    </div>
+
+                    <div>
+                        <div class="brand-title">DLE MODA FITNESS</div>
+                        <p class="brand-subtitle">Atacado de fabricação própria para lojistas em todo o Brasil.</p>
+                    </div>
+
+                    <div class="tagline" aria-label="Status de atendimento">
+                        <span class="tag-dot" aria-hidden="true"></span>
+                        <span>Atendimento para lojistas • Segunda a sexta, 8h às 18h</span>
+                    </div>
+                </header>
+
+                <!-- BENEFÍCIOS RESUMIDOS (escaneáveis) -->
+                <section class="benefits-inline" aria-label="Benefícios principais">
+                    <span class="benefit-chip">Fabricação própria</span>
+                    <span class="benefit-chip">Grade completa P ao GG</span>
+                    <span class="benefit-chip">Modelagem para venda fácil</span>
+                    <span class="benefit-chip">Envios para todo o Brasil</span>
+                </section>
+
+                <!-- LINKS PRINCIPAIS - FOCO EM CONVERSÃO -->
+                <section class="section-links" aria-label="Links de contato e catálogos">
+                    <div class="links-list">
+
+                        <!-- 
+                            Link 1 - CTA PRINCIPAL (WhatsApp)
+                            SUGESTÃO: adicionar microanimação de "pulso" no hover no Elementor.
+                        -->
+                        <a class="link-item link-item-primary" 
+                           href="https://wa.me/5599999999999?text=Ol%C3%A1%20DLE%20Moda%20Fitness%2C%20quero%20receber%20o%20cat%C3%A1logo%20no%20atacado."
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="Falar agora com atendimento da DLE Moda Fitness no WhatsApp">
+                            <div class="link-left">
+                                <span class="link-label">Falar com atendimento agora</span>
+                                <span class="link-sublabel">Atendimento exclusivo para lojistas no WhatsApp</span>
+                            </div>
+                            <div>
+                                <span class="link-badge">Resposta rápida</span>
+                            </div>
+                        </a>
+
+                        <!-- Link 2 - Catálogo digital -->
+                        <a class="link-item"
+                           href="https://seu-link-de-catalogo.com"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <div class="link-left">
+                                <span class="link-label">Ver catálogo digital</span>
+                                <span class="link-sublabel">Coleções atuais, conjuntos e peças avulsas</span>
+                            </div>
+                            <div class="link-icon" aria-hidden="true">📖</div>
+                        </a>
+
+                        <!-- Link 3 - Instagram -->
+                        <a class="link-item"
+                           href="https://www.instagram.com/seu_instagram"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <div class="link-left">
+                                <span class="link-label">Acompanhar no Instagram</span>
+                                <span class="link-sublabel">@dlemodafitness • lançamentos diários e provadores</span>
+                            </div>
+                            <div class="link-icon" aria-hidden="true">📸</div>
+                        </a>
+
+                        <!-- Link 4 - Lista de transmissão / grupo VIP -->
+                        <a class="link-item"
+                           href="https://chat.whatsapp.com/seu-grupo-vip"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <div class="link-left">
+                                <span class="link-label">Entrar no grupo VIP de lojistas</span>
+                                <span class="link-sublabel">Ofertas exclusivas, reposições e novidades em primeira mão</span>
+                            </div>
+                            <div class="link-icon" aria-hidden="true">⭐</div>
+                        </a>
+
+                        <!-- Link 5 - Políticas de atacado -->
+                        <a class="link-item"
+                           href="https://seu-site.com/politicas-atacado"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <div class="link-left">
+                                <span class="link-label">Condições para comprar no atacado</span>
+                                <span class="link-sublabel">Pedido mínimo, prazos de envio e formas de pagamento</span>
+                            </div>
+                            <div class="link-icon" aria-hidden="true">ℹ️</div>
+                        </a>
+
+                    </div>
+                </section>
+
+                <!-- PROVA SOCIAL -->
+                <section class="section-proof" aria-label="Prova social da DLE Moda Fitness">
+                    <article class="proof-card">
+                        <span class="proof-highlight">Mais de 500 lojistas ativos</span> em todo o Brasil já trabalham com a DLE Moda Fitness.
+                        Peças pensadas para girar rápido no seu estoque, com modelagem testada em loja física e online.
+                    </article>
+                </section>
+
+                <!-- FAQ RÁPIDO -->
+                <section class="section-faq" aria-label="Perguntas frequentes">
+                    <div class="faq-title">Dúvidas rápidas</div>
+                    <div class="faq-list">
+                        <article class="faq-item">
+                            <div class="faq-q">Qual o pedido mínimo no atacado?</div>
+                            <div class="faq-a">Nosso pedido mínimo é de XX peças por modelo ou valor mínimo de R$ XXX,XX. Fale com o atendimento para condições atualizadas.</div>
+                        </article>
+                        <article class="faq-item">
+                            <div class="faq-q">Vocês enviam para todo o Brasil?</div>
+                            <div class="faq-a">Sim. Trabalhamos com transportadoras e Correios, sempre buscando o melhor custo-benefício para o lojista.</div>
+                        </article>
+                        <article class="faq-item">
+                            <div class="faq-q">As peças são de fabricação própria?</div>
+                            <div class="faq-a">Sim, a DLE é marca própria. Isso garante controle de qualidade, grade completa e possibilidade de reposição.</div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- CTA FINAL -->
+                <section class="section-final-cta">
+                    <p class="final-text">
+                        Pronto para aumentar o giro da sua loja com moda fitness de fabricação própria?
+                    </p>
+                    <a class="btn-final-whatsapp"
+                       href="https://wa.me/5599999999999?text=Ol%C3%A1%20DLE%20Moda%20Fitness%2C%20sou%20lojista%20e%20quero%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20atacado."
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <span class="icon" aria-hidden="true">💬</span>
+                        <span>Falar com um atendente</span>
+                    </a>
+                </section>
+
+                <!-- RODAPÉ -->
+                <footer class="footer-main">
+                    <span>DLE Moda Fitness • Atacado de fabricação própria</span><br>
+                    <span>© <span id="year"></span> DLE Moda Fitness. Todos os direitos reservados.</span>
+                </footer>
+            </div>
+        </main>
+    </div>
+
+    <!-- JS BÁSICO SÓ PARA ANO ATUAL (e fácil de remover se quiser) -->
+    <script>
+        // Atualiza automaticamente o ano no rodapé
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+    <!-- 
+        SUGESTÕES PARA WORDPRESS/ELEMENTOR:
+        - Transformar cada "link-item" em botões com animação de hover e ícones SVG.
+        - Usar uma seção de fundo com slideshow vertical de fotos de produtos, com leve parallax.
+        - Converter a seção FAQ em acordeão com toggle.
+        - Aplicar animações de entrada (fade-up) ao rolar a página.
+    -->
+</body>
+</html>
