@@ -119,12 +119,67 @@
         }
 
         /* GALERIA DE FOTOS (4 QUADRADOS) */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 10px;
-            margin-bottom: 26px;
+        .gallery {/* CARROSSEL ANIMADO EM LOOP INFINITO */
+.carousel-wrapper {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 26px;
+    position: relative;
+}
+
+.carousel-track {
+    display: flex;
+    animation: scroll-infinite 20s linear infinite;
+    gap: 10px;
+}
+
+.carousel-item {
+    flex-shrink: 0;
+    width: 200px;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #ddd;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ANIMAÇÃO DE SCROLL INFINITO */
+@keyframes scroll-infinite {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-220px * 4)); /* 200px de largura + 20px de gap, multiplicado por 4 imagens */
+    }
+}
+
+/* PAUSA A ANIMAÇÃO AO PASSAR O MOUSE (OPCIONAL) */
+.carousel-track:hover {
+    animation-play-state: paused;
+}
+
+/* AJUSTE PARA DESKTOP */
+@media (min-width: 768px) {
+    .carousel-item {
+        width: 250px;
+        height: 250px;
+    }
+
+    @keyframes scroll-infinite {
+        0% {
+            transform: translateX(0);
         }
+        100% {
+            transform: translateX(calc(-270px * 4));
+        }
+    }
+}
+}
 
         .gallery-item {
             border-radius: 12px;
@@ -238,21 +293,38 @@
                 </div>
             </section>
 
-            <!-- GALERIA DE FOTOS -->
-            <section class="gallery" aria-label="Fotos de moda fitness">
-                <div class="gallery-item">
-                    <img src="imagens/foto1.jpg" alt="Mulher organizando peças de roupa fitness">
-                </div>
-                <div class="gallery-item">
-                    <img src="imagens/foto2.jpg" alt="Mulher treinando com halteres">
-                </div>
-                <div class="gallery-item">
-                    <img src="imagens/foto3.jpg" alt="Modelo correndo com roupa fitness">
-                </div>
-                <div class="gallery-item">
-                    <img src="imagens/foto4.jpg" alt="Detalhe de look fitness feminino">
-                </div>
-            </section>
+            <!-- CARROSSEL DE FOTOS ANIMADO -->
+<section class="carousel-wrapper" aria-label="Carrossel de fotos de moda fitness">
+    <div class="carousel-track">
+        <!-- PRIMEIRO CONJUNTO DE IMAGENS -->
+        <div class="carousel-item">
+            <img src="imagens/foto1.jpg" alt="Mulher organizando peças de roupa fitness">
+        </div>
+        <div class="carousel-item">
+            <img src="imagens/foto2.jpg" alt="Mulher treinando com halteres">
+        </div>
+        <div class="carousel-item">
+            <img src="imagens/foto3.jpg" alt="Modelo correndo com roupa fitness">
+        </div>
+        <div class="carousel-item">
+            <img src="imagens/foto4.jpg" alt="Detalhe de look fitness feminino">
+        </div>
+
+        <!-- DUPLICAÇÃO PARA EFEITO DE LOOP INFINITO -->
+        <div class="carousel-item">
+            <img src="imagens/foto1.jpg" alt="Mulher organizando peças de roupa fitness">
+        </div>
+        <div class="carousel-item">
+            <img src="imagens/foto2.jpg" alt="Mulher treinando com halteres">
+        </div>
+        <div class="carousel-item">
+            <img src="imagens/foto3.jpg" alt="Modelo correndo com roupa fitness">
+        </div>
+        <div class="carousel-item">
+            <img src="imagens/foto4.jpg" alt="Detalhe de look fitness feminino">
+        </div>
+    </div>
+</section>
 
             <!-- TÍTULO DA SEÇÃO DE ATENDIMENTO -->
             <section aria-label="Contatos de atendimento">
